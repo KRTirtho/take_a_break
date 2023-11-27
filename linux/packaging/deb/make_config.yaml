@@ -1,0 +1,26 @@
+display_name: Take a Break
+package_name: take_a_break
+
+maintainer:
+  name: Kingkor Roy Tirtho
+  email: krtirtho@gmail.com
+
+priority: optional
+section: x11
+installed_size: 12400
+
+dependencies:
+  - xdg-user-dirs
+
+essential: false
+icon: assets/logo.png
+
+keywords:
+  - Break
+  - Life
+  - Balance
+  - Productivity
+
+generic_name: Break Reminder
+categories:
+  - Utility

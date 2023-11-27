@@ -1,0 +1,8 @@
+app_id: B59E3750-8C3E-11EE-BB15-D5C9EB2AF692
+publisher: KRTirtho, OSS
+publisher_url: https://github.com/KRTirtho/take_a_break
+display_name: Take a Break
+create_desktop_icon: true
+install_dir_name: Take a Break
+locales:
+  - en

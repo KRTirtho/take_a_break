@@ -1,0 +1,25 @@
+icon: assets/logo.png
+summary: Lightweight cross-platform Spotify desktop client
+group: Applications/Utility
+vendor: Kingkor Roy Tirtho
+packager: Kingkor Roy Tirtho
+packagerEmail: krtirtho@gmail.com
+license: BSD-4-Clause
+url: https://github.com/KRTirtho/take_a_break
+requires:
+  - xdg-user-dirs
+
+display_name: Take a Break
+
+keywords:
+  - Break
+  - Life
+  - Balance
+  - Productivity
+
+generic_name: Break Reminder
+categories:
+  - Utility
+
+
+startup_notify: true
