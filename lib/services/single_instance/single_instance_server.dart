@@ -12,6 +12,12 @@ Future<void> start() async {
     res.json({'message': 'pong'});
   });
 
+  app.get('/show', (req, res) async {
+    await windowManager.show();
+    await windowManager.focus();
+    res.json({'message': 'ok'});
+  });
+
   await app.listen(37201);
 }
 
@@ -30,8 +36,7 @@ Future<bool> isRunning() async {
 Future<void> ensureSingleInstance() async {
   final running = await isRunning();
   if (running && !Platform.executableArguments.contains('--headless')) {
-    await windowManager.show();
-    await windowManager.focus();
+    await http.get(Uri.parse('http://localhost:37201/show'));
   } else if (!running) {
     await start();
   }
