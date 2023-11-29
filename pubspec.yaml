@@ -7,6 +7,7 @@ environment:
   sdk: ">=3.2.0 <4.0.0"
 
 dependencies:
+  alfred: ^1.1.1
   flutter:
     sdk: flutter
   flutter_hooks: ^0.20.3
@@ -16,6 +17,7 @@ dependencies:
   hive: ^2.2.3
   hive_flutter: ^1.1.0
   hooks_riverpod: ^2.4.8
+  http: ^1.1.2
   launch_at_startup: ^0.2.2
   path_provider: ^2.1.1
   window_manager: ^0.3.7

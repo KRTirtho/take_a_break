@@ -7,11 +7,14 @@ import 'package:hooks_riverpod/hooks_riverpod.dart';
 import 'package:launch_at_startup/launch_at_startup.dart';
 import 'package:path_provider/path_provider.dart';
 import 'package:take_a_break/collection/routes.dart';
+import 'package:take_a_break/services/single_instance/single_instance_server.dart';
 import 'package:take_a_break/utils/persisted_state_notifier.dart';
 import 'package:window_manager/window_manager.dart';
 
-void main() async {
+void main(List<String> args) async {
   WidgetsFlutterBinding.ensureInitialized();
+
+  await ensureSingleInstance();
 
   final appSupportDir = await getApplicationSupportDirectory();
   await Hive.initFlutter(appSupportDir.path);
@@ -21,6 +24,7 @@ void main() async {
     launchAtStartup.setup(
       appName: 'Take A Break',
       appPath: Platform.resolvedExecutable,
+      args: ['--headless'],
     );
 
     if (!await launchAtStartup.isEnabled()) {
@@ -41,6 +45,7 @@ void main() async {
 
   windowManager.waitUntilReadyToShow(windowOptions, () async {
     await windowManager.setPreventClose(true);
+    if (args.contains('--headless')) return;
     await windowManager.show();
     await windowManager.focus();
   });
