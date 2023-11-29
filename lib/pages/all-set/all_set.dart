@@ -1,7 +1,9 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/rendering.dart';
 import 'package:gap/gap.dart';
 import 'package:go_router/go_router.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
+import 'package:take_a_break/extensions/theme.dart';
 import 'package:take_a_break/providers/break_provider.dart';
 
 class AllSetPage extends HookConsumerWidget {
@@ -13,16 +15,18 @@ class AllSetPage extends HookConsumerWidget {
     final ThemeData(:colorScheme, :textTheme) = Theme.of(context);
 
     return Scaffold(
-      backgroundColor: colorScheme.primaryContainer,
       body: Center(
         child: Column(
           mainAxisSize: MainAxisSize.min,
           children: [
-            Image.asset(
-              "assets/playful_cat.png",
-              width: 500,
-              color: colorScheme.primaryContainer,
-              colorBlendMode: BlendMode.multiply,
+            ClipRRect(
+              borderRadius: BorderRadius.circular(16),
+              child: Image.asset(
+                "assets/playful_cat.png",
+                width: 500,
+                color: colorScheme.imageBlend,
+                colorBlendMode: BlendMode.multiply,
+              ),
             ),
             Text(
               "You're all set!",

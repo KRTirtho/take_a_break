@@ -4,6 +4,7 @@ import 'package:flutter_hooks/flutter_hooks.dart';
 import 'package:gap/gap.dart';
 import 'package:go_router/go_router.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
+import 'package:take_a_break/extensions/theme.dart';
 import 'package:take_a_break/providers/break_provider.dart';
 
 class HomePageForm extends HookConsumerWidget {
@@ -11,7 +12,7 @@ class HomePageForm extends HookConsumerWidget {
 
   @override
   Widget build(BuildContext context, ref) {
-    final ThemeData(:textTheme) = Theme.of(context);
+    final ThemeData(:textTheme, :colorScheme) = Theme.of(context);
     final formKey = useMemoized(() => GlobalKey<FormState>(), []);
 
     final breakState = ref.watch(breakProvider);
@@ -49,7 +50,7 @@ class HomePageForm extends HookConsumerWidget {
         children: [
           DefaultTextStyle(
             style: textTheme.titleMedium!.copyWith(
-              color: Colors.grey[800],
+              color: colorScheme.subtitleText,
             ),
             child: Row(
               mainAxisAlignment: MainAxisAlignment.center,

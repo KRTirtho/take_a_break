@@ -5,6 +5,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_hooks/flutter_hooks.dart';
 import 'package:gap/gap.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
+import 'package:take_a_break/extensions/theme.dart';
 import 'package:take_a_break/modules/break/pathetic_dialog.dart';
 import 'package:take_a_break/providers/break_provider.dart';
 import 'package:take_a_break/utils/callback_window_listener.dart';
@@ -49,7 +50,6 @@ class BreakPage extends HookConsumerWidget {
     }, []);
 
     return Scaffold(
-      backgroundColor: colorScheme.primaryContainer,
       body: Center(
         child: Column(
           mainAxisSize: MainAxisSize.min,
@@ -59,7 +59,7 @@ class BreakPage extends HookConsumerWidget {
               child: Image.asset(
                 "assets/breakdance.gif",
                 width: 200,
-                color: colorScheme.primaryContainer,
+                color: colorScheme.imageBlend,
                 colorBlendMode: BlendMode.multiply,
               ),
             ),
@@ -67,7 +67,7 @@ class BreakPage extends HookConsumerWidget {
             Text(
               "Time to take a break!",
               style: textTheme.headlineMedium?.copyWith(
-                color: Colors.grey[850],
+                color: colorScheme.baseText,
               ),
             ),
             StreamBuilder<int>(
@@ -102,7 +102,7 @@ class BreakPage extends HookConsumerWidget {
                       const TextSpan(text: "\ntime left of your break."),
                     ],
                     style: textTheme.titleMedium?.copyWith(
-                      color: Colors.grey[850],
+                      color: colorScheme.baseText,
                     ),
                   ),
                 );

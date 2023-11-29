@@ -1,10 +1,8 @@
-import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:gap/gap.dart';
-import 'package:go_router/go_router.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
+import 'package:take_a_break/extensions/theme.dart';
 import 'package:take_a_break/modules/home/form.dart';
-import 'package:take_a_break/providers/break_provider.dart';
 
 class HomePage extends HookConsumerWidget {
   const HomePage({Key? key}) : super(key: key);
@@ -14,7 +12,6 @@ class HomePage extends HookConsumerWidget {
     final ThemeData(:textTheme, :colorScheme) = Theme.of(context);
 
     return Scaffold(
-      backgroundColor: colorScheme.primaryContainer,
       bottomNavigationBar: const Padding(
         padding: EdgeInsets.all(16.0),
         child: Text(
@@ -28,24 +25,27 @@ class HomePage extends HookConsumerWidget {
           child: Column(
             mainAxisSize: MainAxisSize.min,
             children: [
-              Image.asset(
-                "assets/refreshing_beverage.png",
-                width: 200,
-                height: 200,
-                color: colorScheme.primaryContainer,
-                colorBlendMode: BlendMode.multiply,
+              ClipRRect(
+                borderRadius: BorderRadius.circular(16),
+                child: Image.asset(
+                  "assets/refreshing_beverage.png",
+                  width: 200,
+                  height: 200,
+                  color: colorScheme.imageBlend,
+                  colorBlendMode: BlendMode.multiply,
+                ),
               ),
               Text(
                 "Yo, who's that tough fella?! Oh, it's you!",
                 style: textTheme.titleLarge?.copyWith(
-                  color: Colors.grey[850],
+                  color: colorScheme.baseText,
                 ),
               ),
               Text(
                 "Looks like you're taking breaks. Bravo!!\n"
                 "Btw, you can re-configure your breaks here now",
                 style: textTheme.bodyLarge?.copyWith(
-                  color: Colors.grey[700],
+                  color: colorScheme.subtitleText,
                 ),
                 textAlign: TextAlign.center,
               ),

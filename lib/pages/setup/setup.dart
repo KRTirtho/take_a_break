@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 
 import 'package:gap/gap.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
+import 'package:take_a_break/extensions/theme.dart';
 import 'package:take_a_break/modules/home/form.dart';
 
 class SetupPage extends HookConsumerWidget {
@@ -12,7 +13,6 @@ class SetupPage extends HookConsumerWidget {
     final ThemeData(:textTheme, :colorScheme) = Theme.of(context);
 
     return Scaffold(
-      backgroundColor: colorScheme.primaryContainer,
       bottomNavigationBar: const Padding(
         padding: EdgeInsets.all(16.0),
         child: Text(
@@ -26,17 +26,20 @@ class SetupPage extends HookConsumerWidget {
           child: Column(
             mainAxisSize: MainAxisSize.min,
             children: [
-              Image.asset(
-                "assets/office_snack.png",
-                width: 200,
-                height: 200,
-                color: colorScheme.primaryContainer,
-                colorBlendMode: BlendMode.multiply,
+              ClipRRect(
+                borderRadius: BorderRadius.circular(16),
+                child: Image.asset(
+                  "assets/office_snack.png",
+                  width: 200,
+                  height: 200,
+                  color: colorScheme.imageBlend,
+                  colorBlendMode: BlendMode.multiply,
+                ),
               ),
               Text(
                 "Take a break, Pal!",
                 style: textTheme.displaySmall?.copyWith(
-                  color: Colors.grey[850],
+                  color: colorScheme.baseText,
                 ),
               ),
               const Gap(20),

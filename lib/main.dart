@@ -62,6 +62,13 @@ class TakeABreak extends HookConsumerWidget {
           seedColor: Colors.deepOrange,
         ),
       ),
+      darkTheme: ThemeData.dark(useMaterial3: true).copyWith(
+        colorScheme: ColorScheme.fromSeed(
+          brightness: Brightness.dark,
+          seedColor: Colors.deepOrange,
+        ),
+      ),
+      themeMode: ThemeMode.dark,
       debugShowCheckedModeBanner: false,
       builder: (context, child) {
         return DragToResizeArea(child: child!);
