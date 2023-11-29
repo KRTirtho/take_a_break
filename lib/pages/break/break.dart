@@ -5,7 +5,10 @@ import 'package:flutter/material.dart';
 import 'package:flutter_hooks/flutter_hooks.dart';
 import 'package:gap/gap.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
+import 'package:take_a_break/modules/break/pathetic_dialog.dart';
 import 'package:take_a_break/providers/break_provider.dart';
+import 'package:take_a_break/utils/callback_window_listener.dart';
+import 'package:window_manager/window_manager.dart';
 
 class BreakPage extends HookConsumerWidget {
   const BreakPage({Key? key}) : super(key: key);
@@ -21,7 +24,28 @@ class BreakPage extends HookConsumerWidget {
         streamController.add(timer.tick);
       });
 
-      return timer.cancel;
+      CallbackWindowListener? listener;
+      WidgetsBinding.instance.addPostFrameCallback((timeStamp) async {
+        listener = CallbackWindowListener(
+          onWindowClose: () async {
+            if (!await windowManager.isVisible()) return;
+
+            if (context.mounted) {
+              await showDialog(
+                context: context,
+                builder: (context) => const PatheticDialog(),
+              );
+            }
+          },
+        );
+
+        windowManager.addListener(listener!);
+      });
+
+      return () {
+        timer.cancel();
+        if (listener != null) windowManager.removeListener(listener!);
+      };
     }, []);
 
     return Scaffold(
